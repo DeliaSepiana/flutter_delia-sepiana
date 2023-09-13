@@ -43,9 +43,9 @@ class FaktorPersekutuanTerbesar implements Matematika {
 }
 
 void main() {
-  Matematika operation = KelipatanPersekutuanTerkecil(8, 18);
+  Matematika operation = KelipatanPersekutuanTerkecil(12, 18);
   print('Kelipatan Persekutuan Terkecil: ${operation.hasil()}');
 
-  operation = FaktorPersekutuanTerbesar(20, 40);
+  operation = FaktorPersekutuanTerbesar(24, 36);
   print('Faktor Persekutuan Terbesar: ${operation.hasil()}');
 }

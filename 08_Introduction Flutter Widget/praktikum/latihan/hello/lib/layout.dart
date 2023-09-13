@@ -1,0 +1,211 @@
+// ignore: unused_import
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const HelloWorld());
+
+}
+
+class HelloWorld extends StatelessWidget {
+  const HelloWorld({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Delia App'),
+        ),
+        body: Container(
+          color: Colors.grey,
+          margin: EdgeInsets.only(left: 30, right: 30),
+          child: Center(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Delia'),
+                    Text('Sepiana'),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Text('List Anak Didik'),
+                // Expanded(child: ListView(
+                //   padding: const EdgeInsets.all(10),
+                //   children: [
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //     Text('Delia'),
+                //     Text('Sepiana'),
+                //   ],
+                // ),),
+                SizedBox(
+                  height: 30,
+                ),
+                Expanded(child: GridView.count(
+                  crossAxisCount: 2,
+                  children: [
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                    Text('Delia'),
+                    Text('Sepiana'),
+                  ],
+                ),),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// class HomePage extends StatelessWidget {
+//   const HomePage({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: co,
+//     );
+//   }
+// }
