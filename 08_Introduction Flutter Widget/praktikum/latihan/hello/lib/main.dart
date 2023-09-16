@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Delia App'),
+          title: const Text('Hallo Alterra'),
           leading: Builder(
             builder: (BuildContext context) {
               return IconButton(
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         body: const Center(
-          child: Text('Material'),
+          child: Text('Nama Saya adalah Delia Sepiana'),
         ),
         bottomNavigationBar: BottomNavigationBar(items: const [
           BottomNavigationBarItem(icon: Icon(Icons.abc),
