@@ -18,6 +18,68 @@ class MyApp extends StatelessWidget {
         // TRY THIS: Try running your application with "flutter run". You'll see
         // the application has a blue toolbar. Then, without quitting the app,
         // try changing the seedColor in the colorScheme below to Colors.green
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Hallo Alterra'),
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              );
+            },
+          ),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            children: <Widget>[
+              //Membuat Drawer Header
+
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.purple,
+                ),
+                child: Text('drawerheader'),
+              ),
+              ListTile(
+                title: const Text('judul'),
+                onTap: () {},
+              ),
+              ListTile(
+                title: const Text('deskripsi'),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ),
+        body: const Center(
+          child: Text('Nama Saya adalah Delia Sepiana'),
+        ),
+        bottomNavigationBar: BottomNavigationBar(items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.abc),
+          label: 'abc'),
+          BottomNavigationBarItem(icon: Icon(Icons.abc),
+          label: 'abc')
+        ], ),
+      ),
+      
+    );
+  }
+}
         // and then invoke "hot reload" (save your changes or press the "hot
         // reload" button in a Flutter-supported IDE, or press "r" if you used
         // the command line to start the app).
