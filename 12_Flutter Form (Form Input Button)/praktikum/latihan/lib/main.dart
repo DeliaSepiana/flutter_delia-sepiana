@@ -221,7 +221,6 @@ class _ListPageState extends State<ListPage> {
       builder: (BuildContext context) {
         return Builder(
           builder: (BuildContext context) {
-            // Use the Builder widget to get a MaterialLocalizations context
             return AlertDialog(
               title: const Text('Edit Contact'),
               content: Column(
