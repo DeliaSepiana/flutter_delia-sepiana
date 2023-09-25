@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:open_file/open_file.dart';
-import 'contact.dart';
+import 'contact_page.dart';
 
 void main() {
   runApp(const ContactApp());
@@ -14,9 +13,9 @@ class ContactApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const ContactPage(),
+      home: ContactPage(),
     );
   }
 }
@@ -29,44 +28,13 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
+  var nameController = TextEditingController();
+  var phoneController = TextEditingController();
   DateTime _dueDate = DateTime.now();
+  final currentDate = DateTime.now();
   Color _currentColor = Colors.orange;
-  String _selectedFilePath = '';
-  String _submittedName = '';
-  String _submittedPhone = '';
-  DateTime _submittedDate = DateTime.now();
-  Color _submittedColor = Colors.orange;
-  String _submittedFilePath = '';
 
-  final nameController = TextEditingController();
-  final phoneController = TextEditingController();
-  void _handleSubmit() async {
-    final name = nameController;
-    final phone = phoneController;
-    final currentDate = DateTime.now();
-    final currentColor = _currentColor;
-
-    // List<String> selectedFiles = [];
-    // if (_selectedFilePath.isNotEmpty) {
-    //   selectedFiles.addAll(_selectedFilePath);
-    // }
-  }
-
-  void deleteContact(int index) {
-    setState(() {
-      contactList.removeAt(index);
-    });
-  }
-
-  void _pickFile() async {
-    final result = await FilePicker.platform.pickFiles();
-    if (result == null) return;
-
-    final file = result.files.first;
-    setState(() {
-      _selectedFilePath = file.path!;
-    });
-  }
+  List<Contact> contactList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -193,32 +161,16 @@ class _ContactPageState extends State<ContactPage> {
               ],
             ),
             const SizedBox(height: 12),
-            // File Picker
-            // Column(
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: [
-            //     const Text('File'),
-            //     const SizedBox(height: 10),
-            //     ElevatedButton(
-            //       onPressed: _pickFile,
-            //       child: const Text('Pick and Open File'),
-            //     ),
-            //     Text(_selectedFilePath),
-            //   ],
-            // ),
-            // const SizedBox(height: 12),
-            // Submit Button
+
             ElevatedButton(
               onPressed: () {
                 final name = nameController.text;
                 final phoneNumber = phoneController.text;
+                final currentDate = DateTime.now();
+                final currentColor = _currentColor;
 
-                final contact = Contact(
-                  name: name,
-                  phone: phoneNumber,
-                  date: _dueDate,
-                  color: _currentColor,
-                );
+                final contact =
+                    Contact(name, phoneNumber, currentDate, currentColor);
 
                 setState(() {
                   contactList.add(contact);
@@ -267,9 +219,19 @@ class _ContactPageState extends State<ContactPage> {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Phone: ${contact.phone}'),
+                          Text('Phone: ${contact.phoneNumber}'),
                           Text(
                               'Date: ${DateFormat('dd-MM-yyyy').format(contact.date)}'),
+                          Row(
+                            children: [
+                              const Text('Color : '),
+                              Container(
+                                width: 20,
+                                height: 20,
+                                color: contact.color,
+                              )
+                            ],
+                          )
                         ],
                       ),
                       trailing: Row(
@@ -298,5 +260,11 @@ class _ContactPageState extends State<ContactPage> {
         ),
       ),
     );
+  }
+
+  void deleteContact(int index) {
+    setState(() {
+      contactList.removeAt(index);
+    });
   }
 }
