@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:open_file/open_file.dart';
+import 'contact.dart';
 
 void main() {
   runApp(const ContactApp());
@@ -261,7 +262,6 @@ class _ContactPageState extends State<ContactPage> {
                     return ListTile(
                       leading: CircleAvatar(
                         child: Text(avatarText),
-                        backgroundColor: contact.color,
                       ),
                       title: Text(contact.name),
                       subtitle: Column(
@@ -300,19 +300,3 @@ class _ContactPageState extends State<ContactPage> {
     );
   }
 }
-
-class Contact {
-  final String name;
-  final String phone;
-  final DateTime date;
-  final Color color;
-
-  Contact({
-    required this.name,
-    required this.phone,
-    required this.date,
-    required this.color,
-  });
-}
-
-List<Contact> contactList = [];
