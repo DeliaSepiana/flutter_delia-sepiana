@@ -39,6 +39,17 @@ class _ContactPageState extends State<ContactPage> {
 
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
+  void _handleSubmit() async {
+    final name = nameController;
+    final phone = phoneController;
+    final currentDate = DateTime.now();
+    final currentColor = _currentColor;
+
+    // List<String> selectedFiles = [];
+    // if (_selectedFilePath.isNotEmpty) {
+    //   selectedFiles.addAll(_selectedFilePath);
+    // }
+  }
 
   void deleteContact(int index) {
     setState(() {
@@ -182,19 +193,19 @@ class _ContactPageState extends State<ContactPage> {
             ),
             const SizedBox(height: 12),
             // File Picker
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('File'),
-                const SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: _pickFile,
-                  child: const Text('Pick and Open File'),
-                ),
-                Text(_selectedFilePath),
-              ],
-            ),
-            const SizedBox(height: 12),
+            // Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     const Text('File'),
+            //     const SizedBox(height: 10),
+            //     ElevatedButton(
+            //       onPressed: _pickFile,
+            //       child: const Text('Pick and Open File'),
+            //     ),
+            //     Text(_selectedFilePath),
+            //   ],
+            // ),
+            // const SizedBox(height: 12),
             // Submit Button
             ElevatedButton(
               onPressed: () {
@@ -210,6 +221,7 @@ class _ContactPageState extends State<ContactPage> {
 
                 setState(() {
                   contactList.add(contact);
+                  print(contact);
                 });
 
                 nameController.clear();
@@ -270,7 +282,7 @@ class _ContactPageState extends State<ContactPage> {
                             },
                           ),
                           IconButton(
-                            icon: Icon(Icons.delete),
+                            icon: const Icon(Icons.delete),
                             onPressed: () {
                               deleteContact(index - 1);
                             },
