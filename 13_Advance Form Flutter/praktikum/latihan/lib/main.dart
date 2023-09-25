@@ -60,6 +60,15 @@ class _ContactPageState extends State<ContactPage> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 18),
+            const Text(
+              'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
+            const Divider(),
+            const SizedBox(height: 8),
             // Form Name
             TextFormField(
               controller: nameController,
@@ -161,6 +170,29 @@ class _ContactPageState extends State<ContactPage> {
               ],
             ),
             const SizedBox(height: 12),
+            ElevatedButton(
+              onPressed: () async {
+                final result = await FilePicker.platform.pickFiles(
+                  type: FileType
+                      .custom, // Specify the file types you want to allow
+                  allowedExtensions: [
+                    'pdf',
+                    'doc',
+                    'docx'
+                  ], // Replace with your desired file extensions
+                );
+
+                if (result != null) {
+                  // Handle the picked file here
+                  print('File picked: ${result.files.first.name}');
+                } else {
+                  // User canceled the file picker
+                  print('File picking canceled');
+                }
+              },
+              child: const Text('Pick a File'),
+            ),
+            const SizedBox(height: 12),
 
             ElevatedButton(
               onPressed: () {
@@ -174,7 +206,9 @@ class _ContactPageState extends State<ContactPage> {
 
                 setState(() {
                   contactList.add(contact);
-                  print(contact);
+                  print(
+                      'Contact Name: ${contact.name}, Phone Number: ${contact.phoneNumber}, Date: ${DateFormat('dd-MM-yyyy').format(contact.date)}, Color: ${contact.color}');
+                  ;
                 });
 
                 nameController.clear();
