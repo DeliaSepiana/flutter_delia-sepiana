@@ -5,3 +5,4 @@ Untuk mengirim Data ke halaman baru menggunakan parameter pada constructor halam
 Navigation dengan Named Routes dimana tiap halaman memiliki alamat yang disebut route, yang dimana perpindahan halaman menggunakan Navigator.pushNamed(). Untuk kembali ke halaman sebelumnya menggunakan Navigator.pop().
 Untuk mendaftarkan route dengan cara: Tambahkan initialRoute dan routes pada MaterialApp, untuk setiap route adalah sebagai fungsi yang membentuk halaman .
 Untuk mengirim data ke halaman baru menggunakan arguments saat melakukan pushNamed.
+c
