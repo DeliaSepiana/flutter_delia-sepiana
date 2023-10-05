@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GetContact {
-  String name;
-  String phoneNumber;
+  String name = '';
+  String phoneNumber = '';
   DateTime date;
   Color color;
 
