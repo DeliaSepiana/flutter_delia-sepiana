@@ -38,8 +38,9 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
+  var formkey = GlobalKey<FormState>();
   var nameController = TextEditingController();
-  var phoneController = TextEditingController();
+  var phoneNumberController = TextEditingController();
   DateTime _dueDate = DateTime.now();
   final currentDate = DateTime.now();
   Color _currentColor = Colors.orange;
@@ -50,7 +51,6 @@ class _ContactPageState extends State<ContactPage> {
 
   @override
   Widget build(BuildContext context) {
-    final contactProvider = Provider.of<contact_store.Contact>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Contact'),
@@ -137,7 +137,7 @@ class _ContactPageState extends State<ContactPage> {
             const SizedBox(height: 12),
             // Form Nomor HP
             TextFormField(
-              controller: phoneController,
+              controller: phoneNumberController,
               onChanged: (String value) {
                 phoneNumber = value;
               },
@@ -253,33 +253,26 @@ class _ContactPageState extends State<ContactPage> {
 
             ElevatedButton(
               onPressed: () {
-                final name = nameController.text;
-                final phoneNumber = phoneController.text;
-                final currentDate = DateTime.now();
-                final currentColor = _currentColor;
+                final contactProvider =
+                    Provider.of<contact_store.Contact>(context);
+                if (!formkey.currentState!.validate()) return;
 
-                final contact = GetContact(
-                    name: '',
-                    phoneNumber: '',
-                    date: currentDate,
-                    color: currentColor);
+                formkey.currentState!.save();
 
-                setState(() {
-                  contactList.add(contact);
-                  print(
-                      'Contact Name: ${contact.name}, Phone Number: ${contact.phoneNumber}, Date: ${DateFormat('dd-MM-yyyy').format(contact.date)}, Color: ${contact.color}');
-                  ;
-                });
-
+                contactProvider.add(GetContact(
+                  name: name,
+                  phoneNumber: phoneNumber,
+                  date: _dueDate,
+                  color: _currentColor,
+                ));
                 nameController.clear();
-                phoneController.clear();
-
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Contact submitted successfully'),
-                  ),
-                );
+                phoneNumberController.clear();
               },
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  backgroundColor: const Color(0xFF6750a4)),
               child: const Text('Submit'),
             ),
 
@@ -288,7 +281,7 @@ class _ContactPageState extends State<ContactPage> {
 
             Expanded(
               child: ListView.builder(
-                itemCount: contactList.length + 1,
+                itemCount: contactProvider.contacts.length,
                 itemBuilder: (context, index) {
                   if (index == 0) {
                     return const Padding(
@@ -304,12 +297,15 @@ class _ContactPageState extends State<ContactPage> {
                   } else {
                     final contact = contactList[index - 1];
                     final avatarText = contact.name[0].toUpperCase();
+                    final contactProvider =
+                        Provider.of<contact_store.Contact>(context);
 
                     return ListTile(
                       leading: CircleAvatar(
                         child: Text(avatarText),
                       ),
-                      title: Text(contact.name),
+                      title: contactProvider.contacts[index].name,
+                      style: const TextStyle(fontFamily: 'roboto'),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
