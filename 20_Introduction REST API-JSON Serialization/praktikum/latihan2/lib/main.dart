@@ -1,61 +1,59 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class MyApp extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
-    );
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  String imageUrl = '';
-
-  void fetchImage() async {
-    try {
-      final response =
-          await Dio().get('https://api.dicebear.com/7.x/pixel-art/svg.png');
-      if (response.statusCode == 200) {
-        setState(() {
-          imageUrl = response.realUri.toString();
-        });
-      }
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+class _MyAppState extends State<MyApp> {
+  Uint8List? imageData;
 
   @override
   void initState() {
     super.initState();
-    fetchImage();
+    fetchDiceBearImage();
+  }
+
+  Future<void> fetchDiceBearImage() async {
+    try {
+      final response = await Dio().get(
+        'https://api.dicebear.com/7.x/bottts/png',
+        options:
+            Options(responseType: ResponseType.bytes), // Request binary data
+      );
+
+      if (response.statusCode == 200) {
+        setState(() {
+          imageData = Uint8List.fromList(response.data);
+        });
+      } else {
+        throw Exception('Failed to load image');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('DiceBear Image Example'),
-      ),
-      body: Center(
-        child: imageUrl.isEmpty
-            ? const CircularProgressIndicator()
-            : Image.network(imageUrl),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Center(child: Text('DiceBear Dellya')),
+        ),
+        body: Center(
+          child: imageData == null
+              ? CircularProgressIndicator()
+              : Image.memory(imageData!), // Display image as binary data
+        ),
       ),
     );
   }
