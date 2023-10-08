@@ -7,6 +7,7 @@ import 'package:latihan/models/contact.dart';
 import 'galery.dart';
 import 'package:provider/provider.dart';
 import 'package:latihan/view_model/contact_provider.dart' as contact_store;
+import 'package:dio/dio.dart';
 
 void main() {
   runApp(
