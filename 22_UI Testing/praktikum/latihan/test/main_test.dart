@@ -26,7 +26,7 @@ void main() {
     await tester.tap(find.text('Pick a File'));
     await tester.pumpAndSettle();
 
-    expect(find.text('John Doe'), findsOneWidget);
+    expect(find.text('Delia Sepiana'), findsOneWidget);
 
     await tester.tap(find.byIcon(Icons.delete).first);
     await tester.pumpAndSettle();
